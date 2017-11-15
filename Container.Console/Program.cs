@@ -1,21 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
 using Container.SimpleInjector;
 
-namespace Container.Tests
+namespace Container.Console
 {
-    [TestClass]
-    public class ContainerTests
+    class Program
     {
-        [TestMethod]
-        public void Resolve_Instance()
+        static void Main(string[] args)
         {
             var container = ContainerConfig.Register<CustomSimpleInjectorContainer>()
                     .PostRegister()
                     .Verify();
 
             var user = container.Current.ResolveInstance<IUser>();
-
-            Assert.IsNotNull(user);
         }
     }
 }

@@ -13,26 +13,28 @@ namespace Container.SimpleInjector
     /// <summary>
     /// wrapper for simple injector resolution.
     /// </summary>
-    public class CustomSimpleInjectorContainer : SimpleInjectorContainer, IContainer<CustomSimpleInjectorContainer>, IResolver
+    public class CustomSimpleInjectorContainer : IContainer<CustomSimpleInjectorContainer>, IResolver
     {
+        private SimpleInjectorContainer container = new SimpleInjectorContainer();
+
         public T ResolveInstance<T>() where T : class
         {
-            return this.GetInstance<T>();
+            return container.GetInstance<T>();
         }
 
         public void RegisterInstance(Type type, object instance, Lifetime lifetime = Lifetime.Default)
         {
             if (lifetime == Lifetime.Default)
-                this.Register(type, () => instance);
+                container.Register(type, () => instance);
             else
-                this.Register(type, () => instance, lifetime.ToLifestyle());
+                container.Register(type, () => instance, lifetime.ToLifestyle());
         }
 
         public void RegisterInstance<TService, TImplementation>(object instance, Lifetime lifetime = Lifetime.Default)
             where TService : class
             where TImplementation : class, TService
         {
-            this.Register<TService>(() => (TImplementation)instance);
+            container.Register<TService>(() => (TImplementation)instance);
         }
 
         public void RegisterInstance<TService, TImplementation>(Lifetime lifetime = Lifetime.Default) 
@@ -40,30 +42,31 @@ namespace Container.SimpleInjector
             where TImplementation : class, TService
         {
             if (lifetime == Lifetime.Default)
-                this.Register<TService, TImplementation>();
+                container.Register<TService, TImplementation>();
             else
-                this.Register<TService, TImplementation>(lifetime.ToLifestyle());
+                container.Register<TService, TImplementation>(lifetime.ToLifestyle());
         }
 
         public void RegisterDependencies(ContainerSettings settings)
         {
             // set default scope lifestyle to be per thread
-            this.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
+            container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
 
             if (settings != null)
             {
                 // allow overriding registrations
                 if (settings.AllowOverridingRegistrations)
-                    this.Options.AllowOverridingRegistrations = true;
+                    container.Options.AllowOverridingRegistrations = true;
             }
 
             //BaseContainer.RegisterDependencies(this);
+            this.RegisterInstance<IUser, User>();
 
             //this.Register<IAuthenticationManager>(() => IsVerifying
             //        ? new OwinContext(new Dictionary<string, object>()).Authentication
             //        : HttpContext.Current.GetOwinContext().Authentication);
 
-            this.RegisterMvcControllers(Assembly.GetExecutingAssembly());
+            //container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
         }
 
         public IContainer<CustomSimpleInjectorContainer> PostRegister()
@@ -76,7 +79,7 @@ namespace Container.SimpleInjector
         }
 
         public IContainer<CustomSimpleInjectorContainer> VerifyContainer() {
-            this.Verify();
+            container.Verify();
 
             return this;
         }

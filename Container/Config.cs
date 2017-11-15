@@ -21,7 +21,7 @@ namespace Container
 
             if (Container.Current is CustomSimpleInjectorContainer)
             {
-                DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(Container.Current as SimpleInjectorContainer));
+                //DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(Container.Current as SimpleInjectorContainer));
                 //GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(Container.Current as SimpleInjectorContainer);
 
                 Global.Container = Container.Current as CustomSimpleInjectorContainer;
