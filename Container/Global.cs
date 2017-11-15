@@ -1,7 +1,9 @@
-﻿namespace Container
+﻿using Container.Model;
+
+namespace Container
 {
     public static class Global
     {
-        public static IResolver Container;
+        public static IContainer Container;
     }
 }

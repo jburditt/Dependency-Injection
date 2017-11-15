@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <Compile Remove="BaseContainer.cs" />
+    <Compile Remove="Config.cs" />
+    <Compile Remove="ContainerFactory.cs" />
     <Compile Remove="Unity\CustomUnityContainer.cs" />
   </ItemGroup>
 

@@ -11,20 +11,16 @@ using Container.SimpleInjector;
 
 namespace Container
 {
-    public static class ContainerConfig
+    public static class Config
     {
-        public static Container<T> Register<T>(ContainerSettings settings = null) where T : IContainer<T>, new()
+        public static IContainer Initialize<T>(IContainer container, ContainerSettings settings = null)
         {
-            var Container = new Container<T>();
-
-            Container.Configure(settings);
-
-            if (Container.Current is CustomSimpleInjectorContainer)
+            if (container is CustomSimpleInjectorContainer)
             {
-                //DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(Container.Current as SimpleInjectorContainer));
-                //GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(Container.Current as SimpleInjectorContainer);
+                DependencyResolver.SetResolver(new SimpleInjectorDependencyResolver(container as SimpleInjectorContainer));
+                GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(Container.Current as SimpleInjectorContainer);
 
-                Global.Container = Container.Current as CustomSimpleInjectorContainer;
+                Global.Container = container as CustomSimpleInjectorContainer;
             }
 
             //if (Container.Current is CustomUnityContainer)

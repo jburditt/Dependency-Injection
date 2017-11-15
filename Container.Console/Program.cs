@@ -7,11 +7,12 @@ namespace Container.Console
     {
         static void Main(string[] args)
         {
-            var container = ContainerConfig.Register<CustomSimpleInjectorContainer>()
-                    .PostRegister()
-                    .Verify();
+            var container = new CustomSimpleInjectorContainer(null, x => {
+                x.RegisterInstance<IUser, User>();
+            })
+            .Verify();
 
-            var user = container.Current.ResolveInstance<IUser>();
+            var user = container.ResolveInstance<IUser>();
         }
     }
 }
