@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="BaseContainer.cs" />
+    <Compile Remove="Unity\CustomUnityContainer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SimpleInjector" Version="4.0.12" />
+    <PackageReference Include="SimpleInjector.Integration.Web.Mvc" Version="4.0.12" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Container.Model\Container.Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Unity\" />
+  </ItemGroup>
+
+</Project>
