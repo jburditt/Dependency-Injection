@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <PackageReference Include="SimpleInjector" Version="4.0.12" />
-    <PackageReference Include="SimpleInjector.Integration.Web.Mvc" Version="4.0.12" />
   </ItemGroup>
 
   <ItemGroup>

@@ -13,5 +13,6 @@ namespace Container.Model
         void RegisterInstance<TService, TImplementation>(Lifetime lifetime = Lifetime.Default)
             where TService : class
             where TImplementation : class, TService;
+        IContainer Verify();
     }
 }

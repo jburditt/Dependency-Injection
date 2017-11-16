@@ -1,4 +1,4 @@
-﻿namespace Container
+﻿namespace Container.Model
 {
     public class User : IUser
     {
