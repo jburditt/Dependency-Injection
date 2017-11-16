@@ -1,7 +1,7 @@
-﻿using Container.Model;
+﻿using Inject.Model;
 using SimpleInjector;
 
-namespace Container.SimpleInjector
+namespace Inject.SimpleInjector
 {
     public static class LifetimeExtensions
     {

@@ -1,29 +1,29 @@
 ﻿using System;
-using Container.Model;
-using BaseContainer = SimpleInjector.Container;
+using Inject.Model;
+using SimpleInjector;
 
-namespace Container.SimpleInjector
+namespace Inject.SimpleInjector
 {
     /// <summary>
     /// wrapper for simple injector resolution.
     /// </summary>
-    public class SimpleInjectorContainer : IContainer
+    public class Injector : IContainer
     {
-        public BaseContainer BaseContainer;
+        public Container Container;
 
-        public SimpleInjectorContainer(ContainerSettings settings = null)
+        public Injector(ContainerSettings settings = null)
         {
-            BaseContainer = new BaseContainer();
+            Container = new Container();
 
             if (settings != null)
             {
                 // allow overriding registrations
                 if (settings.AllowOverridingRegistrations)
-                    BaseContainer.Options.AllowOverridingRegistrations = true;
+                    Container.Options.AllowOverridingRegistrations = true;
             }
         }
 
-        public IContainer Register(Action<SimpleInjectorContainer> registerDependencies)
+        public IContainer Register(Action<Injector> registerDependencies)
         {
             registerDependencies.Invoke(this);
 
@@ -32,22 +32,22 @@ namespace Container.SimpleInjector
 
         public T ResolveInstance<T>() where T : class
         {
-            return BaseContainer.GetInstance<T>();
+            return Container.GetInstance<T>();
         }
 
         public void RegisterInstance(Type type, object instance, Lifetime lifetime = Lifetime.Default)
         {
             if (lifetime == Lifetime.Default)
-                BaseContainer.Register(type, () => instance);
+                Container.Register(type, () => instance);
             else
-                BaseContainer.Register(type, () => instance, lifetime.ToLifestyle());
+                Container.Register(type, () => instance, lifetime.ToLifestyle());
         }
 
         public void RegisterInstance<TService, TImplementation>(object instance, Lifetime lifetime = Lifetime.Default)
             where TService : class
             where TImplementation : class, TService
         {
-            BaseContainer.Register<TService>(() => (TImplementation)instance);
+            Container.Register<TService>(() => (TImplementation)instance);
         }
 
         public void RegisterInstance<TService, TImplementation>(Lifetime lifetime = Lifetime.Default) 
@@ -55,14 +55,14 @@ namespace Container.SimpleInjector
             where TImplementation : class, TService
         {
             if (lifetime == Lifetime.Default)
-                BaseContainer.Register<TService, TImplementation>();
+                Container.Register<TService, TImplementation>();
             else
-                BaseContainer.Register<TService, TImplementation>(lifetime.ToLifestyle());
+                Container.Register<TService, TImplementation>(lifetime.ToLifestyle());
         }
 
         public IContainer Verify()
         {
-            BaseContainer.Verify();
+            Container.Verify();
 
             return this;
         }

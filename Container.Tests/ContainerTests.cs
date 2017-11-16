@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Container.SimpleInjector;
-using Container.Model;
+using Inject.SimpleInjector;
+using Inject.Model;
 
-namespace Container.Tests
+namespace Inject.Tests
 {
     [TestClass]
     public class ContainerTests
@@ -10,10 +10,11 @@ namespace Container.Tests
         [TestMethod]
         public void Resolve_Instance()
         {
-            var container = new SimpleInjectorContainer(null, x => {
-                x.RegisterInstance<IUser, User>();
-            })
-            .Verify();
+            var container = new Injector(null)
+                .Register(x => {
+                    x.RegisterInstance<IUser, User>();
+                })
+                .Verify();
 
             var user = container.ResolveInstance<IUser>();
 

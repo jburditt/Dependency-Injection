@@ -1,6 +1,6 @@
-﻿using Container.Model;
+﻿using Inject.Model;
 
-namespace Container
+namespace Inject
 {
     public static class Global
     {

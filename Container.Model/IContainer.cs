@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Container.Model
+namespace Inject.Model
 {
     public interface IContainer
     {

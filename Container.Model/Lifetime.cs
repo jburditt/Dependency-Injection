@@ -1,4 +1,4 @@
-﻿namespace Container.Model
+﻿namespace Inject.Model
 {
     public enum Lifetime
     {

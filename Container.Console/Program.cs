@@ -1,15 +1,14 @@
-﻿using System;
-using Container.SimpleInjector;
-using Container.Model;
+﻿using Inject.SimpleInjector;
+using Inject.Model;
 
-namespace Container.Console
+namespace Inject.Console
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var container = new SimpleInjectorContainer(null)
-                .Register(x=> 
+            var container = new Injector(null)
+                .Register(x => 
                 {
                     x.RegisterInstance<IUser, User>();
                 })
