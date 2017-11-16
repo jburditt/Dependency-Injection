@@ -44,7 +44,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Container.Model\Container.Model.csproj" />
     <ProjectReference Include="..\Container.Web\Container.Web.csproj" />
-    <ProjectReference Include="..\Container\Container.csproj" />
+    <ProjectReference Include="..\Container\Container.SimpleInjector.csproj" />
   </ItemGroup>
 
 </Project>

@@ -59,9 +59,9 @@
       <Project>{EBE371F1-EAC2-45F6-8842-20E7DB4DB3EA}</Project>
       <Name>Container.Model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Container\Container.csproj">
+    <ProjectReference Include="..\Container\Container.SimpleInjector.csproj">
       <Project>{08D3CD31-4AB5-4ADF-A653-0715FF7483D9}</Project>
-      <Name>Container</Name>
+      <Name>Container.SimpleInjector</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -5,11 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SimpleInjector.Integration.AspNetCore.Mvc" Version="4.0.12" />
+    <PackageReference Include="Unity" Version="5.2.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Container\Container.SimpleInjector.csproj" />
+    <ProjectReference Include="..\Container.Model\Container.Model.csproj" />
   </ItemGroup>
 
 </Project>

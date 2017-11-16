@@ -8,7 +8,6 @@
     <Compile Remove="BaseContainer.cs" />
     <Compile Remove="Config.cs" />
     <Compile Remove="ContainerFactory.cs" />
-    <Compile Remove="Unity\CustomUnityContainer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,10 +16,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Container.Model\Container.Model.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Unity\" />
   </ItemGroup>
 
 </Project>
